@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Best Friends: The Movie 🎬</title>
+    <link rel="stylesheet" href="reel.css">
+</head>
+
+<body>
+
+<main>
+    <div class="perspective">
+
+        <div class="filmstrip-layout">
+
+            <!-- Top Card -->
+
+            <div class="card-upper">
+
+                <h1>Best Friends: The Movie 🎬</h1>
+
+                <p>
+                    Every friendship has a story.
+                    Ours just happens to be my favorite one.
+                </p>
+
+            </div>
+
+            <!-- Frame -->
+
+            <div class="frame"></div>
+
+            <!-- Filmstrip -->
+
+            <div class="filmstrip">
+
+                <img src="https://i.pinimg.com/736x/45/50/77/45507788c4db77ad329919b54da194dc.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/ad/db/45/addb45edb9b4ab84170ad09639fc948b.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/7b/cc/86/7bcc860e1105947d6b9d71e61682bf5c.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/2c/06/c4/2c06c4088f84e26ca4a74a6537683c71.jpg" alt="">
+                <img src="https://i.pinimg.com/1200x/37/ef/a2/37efa2b1bcc93aaa6a231fe7a97ec8be.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/e3/32/d9/e332d9bcf534608d738b15d7847bfa8f.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/4c/8b/ff/4c8bffdf601000422c22f0b0895c884e.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/74/77/f9/7477f90fe7212958e848f1cfa7a25134.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/bb/35/7b/bb357b40fb1c0ab185b21c5769ec26f7.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/d8/0b/70/d80b70e1e339313a1b9bd46555a4f825.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/9d/46/d2/9d46d26b5e8c1acca14aaaba0819fb3b.jpg" alt="">
+                <img src="https://i.pinimg.com/736x/c6/54/d4/c654d46b942f0958648d500407908953.jpg" alt="">
+
+            </div>
+
+            <!-- Side Bars -->
+
+            <div class="side-bar left"></div>
+            <div class="side-bar right"></div>
+
+            <!-- Bottom Card -->
+
+            <div class="card-lower">
+
+                <h2>Since Day One 💌</h2>
+
+                <p>
+                    A collection of laughter, chaos,
+                    screenshots, inside jokes,
+                    and memories I'll keep forever.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<script>
+
+const card = document.querySelector(".filmstrip-layout");
+const filmstrip = document.querySelector(".filmstrip");
+window.addEventListener("mousemove", (e) => {
+	let centerX = window.innerWidth / 2;
+	let centerY = window.innerHeight / 2;
+
+	let y = (centerX + Math.trunc(-e.clientX)) / 80;
+	let x = (centerY + Math.trunc(-e.clientY)) / 80;
+
+	card.style.setProperty("--x", `${x}deg`);
+	card.style.setProperty("--y", `${y}deg`);
+	filmstrip.style.setProperty("--x", `${x / 4}deg`);
+	filmstrip.style.setProperty("--y", `${y / 4 - 25}deg`);
+});
+
+</script>
+
+</body>
+</html>
