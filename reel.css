@@ -1,0 +1,188 @@
+body {
+min-height:100vh;
+	font-family:monospace;
+	background-color: hsla(0, 100%, 50%, 1);
+	
+	background-image: radial-gradient(
+			at 40% 20%,
+			hsla(28, 100%, 74%, 1) 0px,
+			transparent 50%
+		),
+		radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+		radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+		radial-gradient(at 80% 50%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),
+		radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+		radial-gradient(at 80% 100%, hsla(242, 100%, 70%, 1) 0px, transparent 50%),
+		radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
+	&:after{
+		content: "";
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.1;
+	mix-blend-mode: overlay;
+	background-image: url(https://files.thisanimus.com/img/grain.png);
+	}
+}
+main{
+overflow:hidden;
+	min-height:95vh;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+		position:relative;
+	z-index:3;
+	
+}
+.perspective{
+	perspective: 800px;
+}
+.filmstrip-layout {
+
+	--x:2deg;
+	--y:10deg;
+	transform: rotateX(var(--x)) rotateY(var(--y));
+perspective: 800px;
+	--card-width:min(calc(100vw - 2*var(--r)), 22rem);
+	--r-outer: 1.5rem;
+	--r: 1.75rem;
+	--b-width: 2px;
+	--b-color: rebeccapurple;
+
+
+	filter:drop-shaddow(0 0 1rem rgba( 0 0 0 /.5));
+	display: grid;
+	grid-template-rows:auto var(--r) auto var(--r) auto;
+	grid-template-columns: 1fr var(--r)  var(--card-width)  var(--r) 1fr;
+	> * {
+		background: #fff;
+	}
+	.card-upper {
+		padding:var(--r) var(--r) calc(2* var(--r)) var(--r);
+		border-radius:var(--r-outer) var(--r-outer) 0 0;
+		grid-row:1/3;
+		grid-column: 2 / -2;
+		border: var(--b-width) solid var(--b-color);
+		border-bottom:0;
+		position:relative;
+		clip-path: shape(
+			from 0% 0%,
+			vline by 100%,
+			hline by var(--r),
+			arc by var(--r) calc(var(--r) * -1) of var(--r) cw,
+			hline by calc(100% - var(--r) * 4),
+			arc by var(--r) var(--r) of var(--r) cw,
+			hline by var(--r),
+			vline to 0%,
+			hline to 0%,
+			close
+		);
+	}
+	.frame{
+		grid-column: 3 / -3;
+		grid-row: 2/5;
+		border:var(--b-width) solid var(--b-color);
+		margin:calc(-1 * var(--b-width));
+		position:relative;
+		z-index:2;
+		border-radius:var(--r);
+		background:unset;
+	}
+
+	.side-bar{
+	border-left: var(--b-width) solid var(--b-color);
+border-right: var(--b-width) solid var(--b-color);
+	}
+	.left {
+		grid-column: 2;
+		grid-row: 3;
+		z-index:5;
+		position:relative;
+		
+	}
+	.right {
+		grid-column: 4;
+		grid-row: 3;
+		
+	}
+	.card-lower {
+			position:relative;
+		padding:calc(2*var(--r)) var(--r) var(--r) var(--r);
+		border-radius: 0 0 var(--r-outer) var(--r-outer);
+		grid-column: 2 / -2;
+		grid-row:4/6;
+		border: var(--border-width) solid var(--b-color);
+		clip-path: shape(
+			from 0% 0%,
+			hline by var(--r),
+			arc by var(--r) var(--r) of var(--r) ccw,
+			hline by calc(100% - var(--r) * 4),
+			arc by var(--r) calc(var(--r) * -1) of var(--r) ccw,
+			hline by var(--r),
+			vline by 100%,
+			hline to 0%,
+			vline to 0%,
+			close
+		);
+		border: var(--b-width) solid var(--b-color);
+		border-top:0;
+	}
+	.filmstrip{
+					--x:0deg;
+	--y:-25deg;
+		transform: rotateX(var(--x)) rotateY(var(--y));
+		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%);
+
+	
+		
+
+		background:var(--b-color);
+		grid-column:1 / -1;
+		grid-row: 3;
+
+		position:relative;
+		z-index:4;
+		border-top:var(--b-width) solid var(--b-color);
+		border-bottom:var(--b-width) solid var(--b-color);
+		display:grid;
+		grid-auto-flow: column;
+		gap:var(--b-width);
+		overflow-x:scroll;
+		scroll-snap-type: x mandatory;
+		&::-webkit-scrollbar {
+  display: none;
+}
+		>*{
+			scroll-snap-align:center;
+		}
+		>img{
+			height:10rem;
+			width:auto;
+		}
+	}
+	button{
+		position:absolute;
+		bottom:0;
+		height:3rem;
+		width:4rem;
+		left:-2.5rem;
+	}
+}
+
+
+h1{
+	font-size:2rem;
+	margin-bottom:.2em;
+}
+h2{font-size:1.2rem;
+	margin-bottom:.2em;
+}
+
+.gradient{
+	position:absolute;
+	min-height: 100dvh;
+	
+}
